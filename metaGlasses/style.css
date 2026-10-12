@@ -1,0 +1,440 @@
+/* ===================== RESET ===================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* nav links slide down smoothly */
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #1c1e21;
+    background: #ffffff;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* ===================== NAVBAR ===================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;               /* higher than the video and its text */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 6%;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(10px); /* frosted glass effect */
+}
+
+.logo {
+    color: white;
+    letter-spacing: 4px;
+    font-size: 22px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.nav-links a {
+    color: white;
+    font-size: 15px;
+}
+
+.nav-links a:hover {
+    opacity: 0.7;
+}
+
+.nav-btn {
+    background: white;
+    color: black !important;
+    padding: 8px 18px;
+    border-radius: 30px;
+}
+
+/* ===================== HERO (BACKGROUND VIDEO) ===================== */
+.hero {
+    position: relative;  /* children with position: absolute stay inside this box */
+    height: 100vh;       /* full screen height */
+    overflow: hidden;    /* hide the parts of the video that spill out */
+    display: flex;
+    align-items: center;
+    padding: 0 6%;
+    color: white;
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;   /* fill the box like background-size: cover (no black bars) */
+    z-index: 0;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;            /* same as top:0; right:0; bottom:0; left:0 */
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.1));
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;          /* on top of the overlay */
+    max-width: 560px;
+}
+
+.tag {
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.8;
+    margin-bottom: 16px;
+}
+
+.hero h1 {
+    font-size: 64px;
+    line-height: 1.05;
+    margin-bottom: 20px;
+}
+
+.hero-text {
+    font-size: 18px;
+    opacity: 0.9;
+    margin-bottom: 32px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+/* ===================== BUTTONS ===================== */
+.btn {
+    display: inline-block;
+    padding: 14px 30px;
+    border-radius: 40px;
+    font-weight: 600;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.btn-light   { background: white; color: black; }
+.btn-dark    { background: #1c1e21; color: white; }
+.btn-outline { border: 2px solid white; color: white; }
+
+/* ===================== SECTIONS ===================== */
+.section {
+    padding: 100px 6%;
+}
+
+.section-dark {
+    background: #0b0b0b;
+    color: white;
+}
+
+.section-grey {
+    background: #f2f3f5;
+}
+
+.section-title {
+    font-size: 40px;
+    text-align: center;
+}
+
+.section-sub {
+    text-align: center;
+    opacity: 0.7;
+    margin-bottom: 50px;
+}
+
+/* ===================== FEATURE CARDS ===================== */
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.feature-card {
+    background: #f2f3f5;
+    padding: 32px 24px;
+    border-radius: 20px;
+    transition: transform 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-6px);
+}
+
+.icon {
+    font-size: 36px;
+}
+
+.feature-card h3 {
+    margin: 14px 0 8px;
+}
+
+/* ===================== VIDEO CARDS ===================== */
+/* ONE row of cards that scrolls sideways */
+.video-row {
+    display: flex;            /* cards sit side by side */
+    gap: 20px;
+    overflow-x: auto;         /* scroll left/right when cards don't fit */
+    padding-bottom: 16px;     /* room for the scrollbar */
+}
+
+/* Style the scrollbar (Chrome, Edge, Safari) */
+.video-row::-webkit-scrollbar {
+    height: 8px;
+}
+
+.video-row::-webkit-scrollbar-track {
+    background: #222;
+    border-radius: 10px;
+}
+
+.video-row::-webkit-scrollbar-thumb {
+    background: #666;
+    border-radius: 10px;
+}
+
+.video-row::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
+
+/* Firefox scrollbar */
+.video-row {
+    scrollbar-color: #666 #222;
+}
+
+.video-card {
+    position: relative;  /* so the text can sit on top of the video */
+    flex: 0 0 320px;     /* don't grow, don't shrink, always 320px wide */
+    height: 460px;
+    border-radius: 24px;
+    overflow: hidden;    /* makes the video follow the rounded corners */
+    cursor: pointer;
+}
+
+.video-card video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+/* zoom the video a little when you hover the card */
+.video-card:hover video {
+    transform: scale(1.08);
+}
+
+.video-card-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 24px;
+    /* dark fade at the bottom so the white text is readable */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+}
+
+.video-card-text h3 {
+    font-size: 24px;
+}
+
+.video-card-text p {
+    opacity: 0.85;
+}
+
+/* ===================== SPLIT SECTION ===================== */
+.split {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.split-text,
+.split-image {
+    flex: 1;             /* both sides take equal space */
+}
+
+.split-text h2 {
+    font-size: 44px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.split-text p {
+    font-size: 18px;
+    opacity: 0.8;
+    margin-bottom: 24px;
+}
+
+.check-list {
+    list-style: none;
+}
+
+.check-list li {
+    padding: 8px 0;
+    font-weight: 600;
+}
+
+.check-list li::before {
+    content: "✓ ";
+    color: #0866ff;
+}
+
+.split-image img {
+    width: 100%;
+    border-radius: 24px;
+    display: block;
+}
+
+/* ===================== SPECS TABLE ===================== */
+.specs-table {
+    width: 100%;
+    max-width: 800px;
+    margin: 40px auto 0;
+    border-collapse: collapse;
+}
+
+.specs-table th,
+.specs-table td {
+    text-align: left;
+    padding: 18px 10px;
+    border-bottom: 1px solid #d0d3d8;
+}
+
+.specs-table th {
+    width: 40%;
+}
+
+/* ===================== PRICE CARDS ===================== */
+.price-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 50px;
+}
+
+.price-card {
+    position: relative;
+    text-align: center;
+    border: 1px solid #d0d3d8;
+    border-radius: 24px;
+    padding: 40px 24px;
+}
+
+.price-card.popular {
+    background: #0b0b0b;
+    color: white;
+    border: none;
+    transform: scale(1.05);
+}
+
+.badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%); /* centers the badge */
+    background: #0866ff;
+    color: white;
+    font-size: 13px;
+    padding: 4px 14px;
+    border-radius: 20px;
+}
+
+.price {
+    font-size: 44px;
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+.price-card .btn {
+    margin-top: 20px;
+}
+
+/* ===================== FOOTER ===================== */
+.footer {
+    background: #0b0b0b;
+    color: #aaa;
+    text-align: center;
+    padding: 50px 6%;
+}
+
+.footer .logo {
+    margin-bottom: 10px;
+}
+
+/* ===================== MEDIA QUERIES ===================== */
+
+/* Tablets */
+@media (max-width: 1000px) {
+    .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero h1 {
+        font-size: 48px;
+    }
+}
+
+/* Phones */
+@media (max-width: 650px) {
+    .nav-links li:not(:last-child) {
+        display: none;   /* hide links, keep only "Shop now" */
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .section {
+        padding: 70px 16px;
+    }
+
+    .section-title {
+        font-size: 30px;
+    }
+
+    .feature-grid,
+    .price-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .video-card {
+        flex-basis: 260px;   /* a bit narrower on phones, still swipeable */
+        height: 380px;
+    }
+
+    .split {
+        flex-direction: column;
+    }
+
+    .split-text h2 {
+        font-size: 32px;
+    }
+
+    .price-card.popular {
+        transform: none;
+    }
+}

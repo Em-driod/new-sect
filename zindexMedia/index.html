@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- IMPORTANT: without this line, media queries will NOT work well on phones -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z-Index and Media Queries</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ===================== NAVBAR ===================== -->
+    <!-- The navbar is "fixed" and has a high z-index so it stays ON TOP of everything when you scroll -->
+    <nav class="navbar">
+        <h2 class="logo">MyClass</h2>
+        <ul class="nav-links">
+            <li><a href="#zindex">Z-Index</a></li>
+            <li><a href="#media">Media Query</a></li>
+            <li><a href="#cards">Cards</a></li>
+        </ul>
+    </nav>
+
+    <!-- ===================== PART 1: Z-INDEX ===================== -->
+    <section id="zindex" class="section">
+        <h1>Part 1: Z-Index</h1>
+        <p>
+            Think of z-index like <b>stacking papers on a table</b>.
+            The paper with the <b>higher number</b> sits on top.
+        </p>
+        <p class="note">
+            RULE: z-index only works when the element has a <b>position</b>
+            (relative, absolute, fixed or sticky). It does NOT work on position: static (the default).
+        </p>
+
+        <!-- Example 1: three boxes overlapping -->
+        <h3>Example 1: Overlapping boxes</h3>
+        <div class="stack-container">
+            <div class="box box-red">Red<br>z-index: 1</div>
+            <div class="box box-green">Green<br>z-index: 3</div>
+            <div class="box box-blue">Blue<br>z-index: 2</div>
+        </div>
+        <p>Green is on top because 3 is the biggest number. Blue is next (2). Red is at the bottom (1).</p>
+
+        <!-- Example 2: z-index without position (does not work) -->
+        <h3>Example 2: z-index WITHOUT position (does not work)</h3>
+        <div class="stack-container">
+            <div class="box box-red no-position">Red<br>z-index: 100<br>(no position)</div>
+            <div class="box box-blue pulled-up">Blue<br>z-index: 1</div>
+        </div>
+        <p>Red has z-index 100 but no position, so the browser ignores it. Blue still covers it.</p>
+
+        <!-- Example 3: real life use - a badge on a picture -->
+        <h3>Example 3: Real life - badge on top of a card</h3>
+        <div class="product">
+            <span class="badge">SALE</span>
+            <div class="product-img">Product Image</div>
+            <p>Nike Shoe - $50</p>
+        </div>
+
+        <!-- Example 4: real life use - popup / modal -->
+        <h3>Example 4: Real life - popup (modal)</h3>
+        <p>Hover over the button below. The popup appears ON TOP of the page.</p>
+        <div class="modal-demo">
+            <button class="open-btn">Hover me</button>
+            <div class="overlay">
+                <div class="modal">
+                    <h3>Hello!</h3>
+                    <p>I am a popup with z-index: 1000</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== PART 2: MEDIA QUERIES ===================== -->
+    <section id="media" class="section">
+        <h1>Part 2: Media Queries</h1>
+        <p>
+            A media query lets us say: <b>"IF the screen is this size, THEN use these styles."</b>
+            This is how one website looks good on a phone, a tablet and a laptop.
+        </p>
+
+        <!-- This box changes color depending on the screen size -->
+        <div class="screen-box">
+            <p class="show-phone">You are on a PHONE screen (below 600px)</p>
+            <p class="show-tablet">You are on a TABLET screen (600px - 991px)</p>
+            <p class="show-laptop">You are on a LAPTOP screen (992px and above)</p>
+        </div>
+        <p class="note">
+            TRY IT: Make your browser window smaller and bigger, and watch the box above change.
+            (Or press F12 and click the phone icon.)
+        </p>
+
+        <h3>Common breakpoints</h3>
+        <table>
+            <tr><th>Device</th><th>Width</th></tr>
+            <tr><td>Phone</td><td>below 600px</td></tr>
+            <tr><td>Tablet</td><td>600px to 991px</td></tr>
+            <tr><td>Laptop / Desktop</td><td>992px and above</td></tr>
+        </table>
+    </section>
+
+    <!-- ===================== PART 3: RESPONSIVE CARDS ===================== -->
+    <section id="cards" class="section">
+        <h1>Part 3: Responsive cards</h1>
+        <p>Laptop = 3 cards in a row. Tablet = 2 cards. Phone = 1 card.</p>
+
+        <div class="cards">
+            <div class="card">
+                <h3>HTML</h3>
+                <p>The skeleton of a website.</p>
+            </div>
+            <div class="card">
+                <h3>CSS</h3>
+                <p>The design and colors of a website.</p>
+            </div>
+            <div class="card">
+                <h3>JavaScript</h3>
+                <p>The brain that makes it work.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Class: Z-Index and Media Queries</p>
+    </footer>
+
+</body>
+</html>
