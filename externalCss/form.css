@@ -86,7 +86,8 @@ button{
 }
 .icons a:hover{
     transform: scale(1.05);
-    background-color: #283042;
+    background-color: white;
+    color: red;
 }
 .icons a:focus-visible{
     outline: 2px solid white;
